@@ -19,34 +19,37 @@ function determineWinner(player, computer) {
     }
 }
 
-function playRound() {
-    let player = prompt().toLowerCase()
-    let computer = computerPlay()
-    console.log(determineWinner(player, computer))
-    return determineWinner(player, computer)
+function playRound(e) {
+    let player = e.target.id;
+    let computer = computerPlay();
+    console.log(determineWinner(player, computer));
+    return determineWinner(player, computer);
 }
 
-function playGame() {
-    playerWins = 0;
-    compWins = 0;
-    draws = 0;
+// function playGame() {
+//     playerWins = 0;
+//     compWins = 0;
+//     draws = 0;
 
-    for (let i = 0; i < 5; i++) {
-        let result = playRound();
-        if (result === "you win.") {
-            playerWins++;
-        } else if (result === "you lose.") {
-            compWins++;
-        } else {
-            draws++;
-        }
-    }
+//     for (let i = 0; i < 5; i++) {
+//         let result = playRound();
+//         if (result === "you win.") {
+//             playerWins++;
+//         } else if (result === "you lose.") {
+//             compWins++;
+//         } else {
+//             draws++;
+//         }
+//     }
 
-    if (playerWins > compWins) {
-        return "you win the game."
-    } else if (compWins > playerWins) {
-        return "you lose the game"
-    } else {
-        return "game draw."
-    }
-}
+//     if (playerWins > compWins) {
+//         return "you win the game."
+//     } else if (compWins > playerWins) {
+//         return "you lose the game"
+//     } else {
+//         return "game draw."
+//     }
+// }
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', playRound))
