@@ -31,15 +31,19 @@ function playRound(e) {
     return determineWinner(player, computer);
 }
 
-function playGame() {
+function playGame(e) {
+    let resultsDiv = document.querySelector('.match-result');
+    let gameResult = document.createElement('p');
     playerWins = 0;
     compWins = 0;
     draws = 0;
 
     for (let i = 0; i < 5; i++) {
-        let result = playRound();
+        let result = playRound(e);
         if (result === "you win.") {
             playerWins++;
+            gameResult.textContent = "W"
+            resultsDiv.appendChild(gameResult)
         } else if (result === "you lose.") {
             compWins++;
         } else {
@@ -57,4 +61,4 @@ function playGame() {
 }
 
 const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('click', playRound))
+buttons.forEach(button => button.addEventListener('click', playGame))
