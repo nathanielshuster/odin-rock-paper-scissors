@@ -6,7 +6,7 @@ function computerPlay() {
 }
 
 function determineWinner(player, computer) {
-    let resultPara = document.querySelector('.game-result');
+    let resultPara = document.querySelector('.round-result');
 
     if (player === computer) {
         resultPara.textContent = 'result: draw.';
@@ -31,21 +31,22 @@ function playRound(e) {
     return determineWinner(player, computer);
 }
 
-function playGame(e) {
-    let resultsDiv = document.querySelector('.match-result');
-    let gameResult = document.createElement('p');
-    playerWins = 0;
-    compWins = 0;
-    draws = 0;
+function playGame() {
+    let playerWins = document.querySelector('.player-wins')
+    let playerLosses = document.querySelector('.player-losses')
+    let matchResult = document.querySelector('.match-result')
+    let playerWinCount = 0;
+    let playerLossCount = 0;
+    let draws = 0;
 
     for (let i = 0; i < 5; i++) {
         let result = playRound(e);
         if (result === "you win.") {
-            playerWins++;
-            gameResult.textContent = "W"
-            resultsDiv.appendChild(gameResult)
+            playerWinCount++;
+            playerWins.textContent = `wins: ${playerWinCount}`
         } else if (result === "you lose.") {
-            compWins++;
+            playerLossCount++;
+            playerLosses.textContent = `losses: ${playerWinCount}`
         } else {
             draws++;
         }
