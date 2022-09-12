@@ -31,24 +31,23 @@ function playRound(e) {
     return determineWinner(player, computer);
 }
 
-function playGame() {
-    let playerWins = document.querySelector('.player-wins')
-    let playerLosses = document.querySelector('.player-losses')
-    let matchResult = document.querySelector('.match-result')
-    let playerWinCount = 0;
-    let playerLossCount = 0;
-    let draws = 0;
+function playGame(e) {
+    let winPara = document.querySelector('.player-wins')
+    let lossPara = document.querySelector('.player-losses')
+    let finalResult = document.querySelector('.match-result')
+    let playerWins = 0;
+    let playerLosses = 0;
 
-    for (let i = 0; i < 5; i++) {
+    while (playerWins + playerLosses < 5) {
         let result = playRound(e);
         if (result === "you win.") {
             playerWinCount++;
-            playerWins.textContent = `wins: ${playerWinCount}`
+            winPara.textContent = `wins: ${playerWinCount}`
         } else if (result === "you lose.") {
             playerLossCount++;
-            playerLosses.textContent = `losses: ${playerWinCount}`
+            lossPara.textContent = `losses: ${playerLossCount}`
         } else {
-            draws++;
+            continue;
         }
     }
 
