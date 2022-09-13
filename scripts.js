@@ -50,14 +50,38 @@ function updateRecord(outcome, record) {
     }
 }
 
+function updateMatchResult(record) {
+    let resultPara = document.querySelector('.match-result');
+
+    if (record["wins"] + record["losses"] < 5) {
+        return;
+    } else if (record["wins"] > record["losses"]) {
+        resultPara.textContent = "you win the match."
+    } else if (record["wins"] < record["losses"]) {
+        resultPara.textContent = "you lose the match."
+    }
+}
+
+function resetRecord(record) {
+    if (record["wins"] + record["losses"] < 5) {
+        return;
+    } else {
+        return record = {
+            wins: 0,
+            losses: 0
+        };
+    }
+}
+
 function playRound(e) {
+    resetRecord(record);
     let player = e.target.id;
     let computer = computerPlay();
     displayChoices(player, computer);
     let winner = displayWinner(player, computer);
 
     updateRecord(winner, record);
-    updateMatchResult();
+    updateMatchResult(record);
 }
 
 const buttons = document.querySelectorAll('button');
