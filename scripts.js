@@ -1,11 +1,10 @@
 const move = ["rock", "paper", "scissors"];
-let playerSelection = "paper";
 
 function computerPlay() {
     return move[Math.floor(Math.random() * move.length)];
 }
 
-function determineWinner(player, computer) {
+function roundResult(player, computer) {
     let resultPara = document.querySelector('.round-result');
 
     if (player === computer) {
@@ -26,39 +25,10 @@ function playRound(e) {
     let computer = computerPlay();
     let playerPara = document.querySelector('.player-choice')
     playerPara.textContent = `you played: ${player}`
-    let aiPara = document.querySelector('.ai-choice')
+    let aiPara = document.querySelector('.computer-choice')
     aiPara.textContent = `computer played: ${computer}`
-    return determineWinner(player, computer);
-}
-
-function playGame(e) {
-    let winPara = document.querySelector('.player-wins')
-    let lossPara = document.querySelector('.player-losses')
-    let finalResult = document.querySelector('.match-result')
-    let playerWins = 0;
-    let playerLosses = 0;
-
-    while (playerWins + playerLosses < 5) {
-        let result = playRound(e);
-        if (result === "you win.") {
-            playerWinCount++;
-            winPara.textContent = `wins: ${playerWinCount}`
-        } else if (result === "you lose.") {
-            playerLossCount++;
-            lossPara.textContent = `losses: ${playerLossCount}`
-        } else {
-            continue;
-        }
-    }
-
-    if (playerWins > compWins) {
-        return "you win the game."
-    } else if (compWins > playerWins) {
-        return "you lose the game"
-    } else {
-        return "game draw."
-    }
+    return roundResult(player, computer);
 }
 
 const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('click', playGame))
+buttons.forEach(button => button.addEventListener('click', playRound))
